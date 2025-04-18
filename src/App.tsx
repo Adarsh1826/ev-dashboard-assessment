@@ -1,8 +1,8 @@
-import Dashboard from "./components/DashBoard"
+import { Home } from "./pages/Home"
 function App() {
   return (
     <>
-      <Dashboard />
+      <Home />
     </>
   )
 }
