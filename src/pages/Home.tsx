@@ -2,6 +2,7 @@ import { Car, VerifiedIcon } from "lucide-react";
 import Card from "../components/Card";
 import { useEffect, useState } from "react";
 import Papa from "papaparse";
+import Header from "../components/Header";
 type VehicleData = {
   City: string;
   Make: string;
@@ -27,6 +28,8 @@ export const Home = () => {
   const evCount = data.length.toString();
   const uniqueMakes = new Set(data.map((item) => item.Make)).size.toString();
   return (
+    <>
+    <Header />
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <Card Icon={Car} count={evCount} label="EVs" />
@@ -35,5 +38,6 @@ export const Home = () => {
         <Card Icon={VerifiedIcon} count={uniqueMakes} label="Unique Makes" />
       </div>
     </div>
+    </>
   );
 };
