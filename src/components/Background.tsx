@@ -12,8 +12,6 @@ const Background = () => {
     window.addEventListener('mousemove', onMove);
     return () => window.removeEventListener('mousemove', onMove);
   }, []);
-
-  // light sky‑blue core (@50% opacity) + pale mint green halo (@20% opacity)
   const bg = `
     radial-gradient(circle at ${pos.x}px ${pos.y}px,
       rgba(96,165,250,0.5) 0%,    /* blue-400 @ 50% */
