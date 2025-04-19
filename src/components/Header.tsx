@@ -17,7 +17,7 @@ const Header = () => {
 
       </motion.h1>
       <p className="mt-4 text-center text-sm md:text-base text-gray-400">
-        A visual journey into EV growth, reach, and future
+        Charting the Electric Revolution — Past, Present, and Beyond
       </p>
     </header>
   );
