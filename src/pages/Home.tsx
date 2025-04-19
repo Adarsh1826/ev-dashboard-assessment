@@ -7,6 +7,7 @@ import Mlist from "../charts/Mlist";
 import MlistPieChart from "../charts/MlistPieChart";
 import TypeOfEv from "../charts/TypeOfEv";
 import Country from "../charts/Country";
+import { Footer } from "../components/Footer";
 
 export const Home = () => {
   const res = useData();
@@ -41,8 +42,8 @@ export const Home = () => {
             <h2 className="text-lg font-semibold mb-4 text-center">County-wise EV Ownership</h2>
             <Country />
           </div>
-          
         </div>
+        <Footer />
       </div>
     </div>
   );
