@@ -20,7 +20,13 @@ const Country = () => {
     () => countryDensity.slice(0, topN),
     [countryDensity, topN]
   );
-
+  const borderColors = slicedCount.map((_, idx) => {
+    const hue = Math.round((idx * 360) / slicedCount.length);
+    return `hsl(${hue}, 70%, 50%)`;
+  });
+  const backgroundColors = borderColors.map(hsl => {
+    return hsl.replace('hsl', 'hsla').replace(')', ', 0.3)');
+  });
   const data = {
     labels: slicedCount.map(([make]) => make),
     datasets: [
@@ -28,8 +34,8 @@ const Country = () => {
         label: `Top ${topN} Counties by EV Usage`,
         data: slicedCount.map(([, count]) => count),
         borderRadius: 6,
-        borderColor: "#8b5cf6",
-        backgroundColor: "rgba(139,92,246,0.2)",
+        borderColor: borderColors,
+        backgroundColor: backgroundColors,
         fill: true,
         
       },

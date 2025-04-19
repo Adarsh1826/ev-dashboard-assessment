@@ -9,18 +9,21 @@ import {
   Legend,
 } from "chart.js";
 import useData from "../hooks";
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
-
 const Mlist = () => {
   const { topManufacturers } = useData();
   const [topN, setTopN] = useState(10);
-
   const slicedManufacturers = useMemo(
     () => topManufacturers.slice(0, topN),
     [topManufacturers, topN]
   );
-
+  const borderColors = slicedManufacturers.map((_, idx) => {
+    const hue = Math.round((idx * 360) / slicedManufacturers.length);
+    return `hsl(${hue}, 70%, 50%)`;
+  });
+  const backgroundColors = borderColors.map(hsl => {
+    return hsl.replace('hsl', 'hsla').replace(')', ', 0.3)');
+  });
   const data = {
     labels: slicedManufacturers.map(([make]) => make),
     datasets: [
@@ -28,30 +31,33 @@ const Mlist = () => {
         label: `Top ${topN} EV Manufacturers`,
         data: slicedManufacturers.map(([, count]) => count),
         borderRadius: 6,
-        borderColor: "#8b5cf6",
-        backgroundColor: "rgba(139,92,246,0.2)",
-        fill: true,
-        
+        borderColor: borderColors,
+        backgroundColor: backgroundColors,
       },
     ],
   };
   const options = {
     responsive: true,
     plugins: {
-      legend: {
-        display: true,
-        labels: {
-          color: "white",
-        },
-      },
+      legend: { display: false },
       tooltip: {
         backgroundColor: "#1f2937",
         titleColor: "#f3f4f6",
         bodyColor: "#e5e7eb",
       },
     },
-    
+    scales: {
+      x: {
+        ticks: { color: "white" },
+        grid: { display: false },
+      },
+      y: {
+        ticks: { color: "white" },
+        grid: { color: "rgba(255, 255, 255, 0.1)" },
+      },
+    },
   };
+
   return (
     <div className="p-4 bg-black rounded-xl shadow-lg shadow-purple-600/30">
       <div className="flex justify-between items-center mb-4">
@@ -72,5 +78,4 @@ const Mlist = () => {
     </div>
   );
 };
-
 export default Mlist;

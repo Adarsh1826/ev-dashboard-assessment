@@ -22,30 +22,37 @@ export const Home = () => {
           <Card Icon={PercentIcon} count={res.fastestGrowingYear} label="Fastest Growing Year" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div >
+          <div className="w-full flex flex-col p-4 bg-gray-900 rounded">
             <h2 className="text-lg font-semibold mb-4">EV Adoption Over Time</h2>
             <EVAdoptionChart />
           </div>
-          <div >
+
+          <div className="w-full flex flex-col p-4 bg-gray-900 rounded">
             <h2 className="text-lg font-semibold mb-4">Top EV Manufacturers</h2>
             <Mlist />
           </div>
-          <div>
-            <h2 className="text-lg font-semibold mb-4 text-center">EV Market Share</h2>
-            <MlistPieChart />
-          </div>
-          <div >
-            <h2 className="text-lg font-semibold mb-4 text-center">EV Distribution by Type</h2>
-            <TypeOfEv />
-          </div>
-          <div >
+          
+          <div className="w-full flex flex-col p-4 bg-gray-900 rounded">
             <h2 className="text-lg font-semibold mb-4 text-center">County-wise EV Ownership</h2>
             <Country />
           </div>
+          <div className="w-full flex flex-col p-4 bg-gray-900 rounded">
+            <h2 className="text-lg font-semibold mb-4 text-center">EV Distribution by Type</h2>
+            <TypeOfEv />
+          </div>
         </div>
+        <div className="flex justify-center px-4">
+  <div className="w-full max-w-xl flex flex-col p-4 bg-gray-900 rounded">
+    <h2 className="text-lg font-semibold mb-4 text-center">EV Market Share</h2>
+    <div className="flex-1">
+      <MlistPieChart />
+    </div>
+  </div>
+</div>
+
+
         <Footer />
       </div>
     </div>
   );
 };
-
