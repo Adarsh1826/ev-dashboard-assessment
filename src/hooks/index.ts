@@ -7,11 +7,12 @@ type VehicleData = {
   "Model Year": string;
   Make: string;
   Model: string;
+  "Electric Vechicle Type" :string;
   "Electric Range": string;
   "Clean Alternative Fuel Vehicle (CAFV) Eligibility": string;
   [key: string]: any;
 };
-
+// data fetch kr  rha hu
 const useData = () => {
   const [data, setData] = useState<VehicleData[]>([]);
   useEffect(() => {
@@ -24,10 +25,9 @@ const useData = () => {
       },
     });
   }, []);
-
+// data use kr rha hu
   const evCount = data.length.toString();
   const uniqueMakes = new Set(data.map((item) => item.Make)).size.toString();
-
   const cafvEligibleCount = data.filter(
     (item) =>
       item["Clean Alternative Fuel Vehicle (CAFV) Eligibility"]
@@ -94,7 +94,27 @@ const evAdoptionData = sortedYearss.map((year) => ({
   year,
   count: evsByYear[year],
 }));
+const topManufacturers = Object.entries(
+  data.reduce((acc, item) => {
+    const make = item.Make?.trim();
+    if (make) {
+      acc[make] = (acc[make] || 0) + 1;
+    }
+    return acc;
+  }, {} as Record<string, number>)
+).sort((a, b) => b[1] - a[1]); 
 
+// ek electruc vechicle type add krna hai
+
+const typeev = Object.entries(
+  data.reduce((acc, item) => {
+    const type = item["Electric Vehicle Type"]?.trim();
+    if (type) {
+      acc[type] = (acc[type] || 0) + 1;
+    }
+    return acc;
+  }, {} as Record<string, number>)
+);
   return {
     evCount,
     uniqueMakes,
@@ -102,8 +122,9 @@ const evAdoptionData = sortedYearss.map((year) => ({
     averageRange,
     fastestGrowingYear,
     fastestGrowingCounty,
-    evAdoptionData
+    evAdoptionData,
+    topManufacturers,
+    typeev
   };
 };
-
 export default useData;
