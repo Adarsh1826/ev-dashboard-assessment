@@ -115,6 +115,16 @@ const typeev = Object.entries(
     return acc;
   }, {} as Record<string, number>)
 );
+
+// comurty data fetching kr rha hu
+const countryDensity = Object.entries(
+  data.reduce((acc, item) => {
+    const country = item.County || "";
+    acc[country] = (acc[country] || 0) + 1;
+    return acc;
+  }, {} as Record<string,number>) 
+).sort((a, b) => b[1] - a[1]); ;
+
   return {
     evCount,
     uniqueMakes,
@@ -124,7 +134,8 @@ const typeev = Object.entries(
     fastestGrowingCounty,
     evAdoptionData,
     topManufacturers,
-    typeev
+    typeev,
+    countryDensity
   };
 };
 export default useData;

@@ -8,29 +8,25 @@ import {
   Legend,
 } from "chart.js";
 import useData from "../hooks";
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
-
 const TypeOfEv = () => {
   const { typeev } = useData();
-
   const labels = typeev.map(([type]) => type);
   const values = typeev.map(([, count]) => count);
   const total = values.reduce((sum, count) => sum + count, 0);
-
   const data = {
     labels,
     datasets: [
       {
         label: "EV Type Count",
-        data: values,
-        backgroundColor: "rgba(139,92,246,0.2)",
+        data: values,backgroundColor: [
+          "#10B981", "#22d3ee", "#3B82F6"
+        ],
         borderRadius: 6,
         barThickness: 40,
       },
     ],
   };
-
   const options = {
     responsive: true,
     plugins: {
@@ -44,9 +40,6 @@ const TypeOfEv = () => {
             const percent = ((value / total) * 100).toFixed(1);
             return `${value} (${percent}%)`;
           },
-          backgroundColor: "#1f2937",
-        titleColor: "#f3f4f6",
-        bodyColor: "#e5e7eb",
         },
       },
     },

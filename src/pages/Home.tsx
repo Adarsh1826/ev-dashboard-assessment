@@ -6,6 +6,8 @@ import EVAdoptionChart from "../charts/EvAdoptionPerYear";
 import Mlist from "../charts/Mlist";
 import MlistPieChart from "../charts/MlistPieChart";
 import TypeOfEv from "../charts/TypeOfEv";
+import Country from "../charts/Country";
+
 export const Home = () => {
   const res = useData();
   return (
@@ -35,6 +37,11 @@ export const Home = () => {
             <h2 className="text-lg font-semibold mb-4 text-center">EV Distribution by Type</h2>
             <TypeOfEv />
           </div>
+          <div >
+            <h2 className="text-lg font-semibold mb-4 text-center">County-wise EV Ownership</h2>
+            <Country />
+          </div>
+          
         </div>
       </div>
     </div>
