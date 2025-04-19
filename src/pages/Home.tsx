@@ -1,19 +1,18 @@
 import { Car, PercentIcon, VerifiedIcon, LeafIcon } from "lucide-react";
 import Card from "../components/Card";
-import Header from "../components/Header";
 import useData from "../hooks";
 import EVAdoptionChart from "../charts/EvAdoptionPerYear";
 import Mlist from "../charts/Mlist";
 import MlistPieChart from "../charts/MlistPieChart";
 import TypeOfEv from "../charts/TypeOfEv";
 import Country from "../charts/Country";
-import { Footer } from "../components/Footer";
+import Bar from "../components/Bar";
 
 export const Home = () => {
   const res = useData();
   return (
     <div className="min-h-screen bg-black text-white font-body">
-      <Header />
+      <Bar type="header" heading="EVision Dashboard" footer="Charting the Electric Revolution — Past, Present, and Beyond"/>
       <div className="max-w-7xl mx-auto px-4 py-10 space-y-10">
         <div className="flex flex-wrap justify-center gap-8">
           <Card Icon={Car} count={res.evCount} label="Total EVs" />
@@ -50,8 +49,7 @@ export const Home = () => {
   </div>
 </div>
 
-
-        <Footer />
+<Bar type="footer" footer="Made By Adarsh"/>
       </div>
     </div>
   );
