@@ -82,6 +82,18 @@ const useData = () => {
     (max, current) => (current[1] > max[1] ? current : max),
     ["", -Infinity]
   )[0];
+  const evsByYear: Record<string, number> = {};
+  data.forEach((item) => {
+    const year = item["Model Year"];
+    if (year) {
+        evsByYear[year] = (evsByYear[year] || 0) + 1;
+    }
+  });
+const sortedYearss = Object.keys(evsByYear).sort();
+const evAdoptionData = sortedYearss.map((year) => ({
+  year,
+  count: evsByYear[year],
+}));
 
   return {
     evCount,
@@ -90,6 +102,7 @@ const useData = () => {
     averageRange,
     fastestGrowingYear,
     fastestGrowingCounty,
+    evAdoptionData
   };
 };
 

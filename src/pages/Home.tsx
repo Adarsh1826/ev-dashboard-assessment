@@ -2,6 +2,7 @@ import { Car, PercentIcon, VerifiedIcon, LeafIcon } from "lucide-react";
 import Card from "../components/Card";
 import Header from "../components/Header";
 import useData from "../hooks";
+import EVAdoptionChart from "../charts/EvAdoptionPerYear";
 export const Home = () => {
   const res = useData();
   return (
@@ -14,6 +15,9 @@ export const Home = () => {
             <Card Icon={LeafIcon} count={`${res.averageRange} miles`} label="Avg Electric Reuse" />
             <Card Icon={VerifiedIcon} count={res.fastestGrowingCounty} label="Top County by Ove" />
             <Card Icon={PercentIcon} count={res.fastestGrowingYear} label="Fastest Growing Year" />
+          </div>
+          <div className="mt-8">
+            <EVAdoptionChart />
           </div>
         </div>
       </div>
