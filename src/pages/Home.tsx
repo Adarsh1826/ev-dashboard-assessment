@@ -12,7 +12,6 @@ export const Home = () => {
     <BackgroundGradient/>
     <div className="relative z-10">
     <Header />
-    
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <Card Icon={Car} count={res.evCount} label="EVs" />
